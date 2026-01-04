@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acre & Anchor | Strategic Blueprint</title>
+    
+    <!-- Fonts: Playfair Display (Serif/Editorial) and Lato (Sans/Utility) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* 
+         * DESIGN SYSTEM: MIDNIGHT OPULENCE 
+         * Based on Chapter 4 Visual Identity Systems 
+         */
+        :root {
+            /* Palette */
+            --color-navy: #0f3460;
+            --color-navy-dark: #0a2540;
+            --color-charcoal: #2c2c2c;
+            --color-slate: #34495e;
+            --color-champagne: #efc07b;
+            --color-alabaster: #f4f1eb;
+            --color-white: #ffffff;
+            --color-overlay: rgba(15, 52, 96, 0.95);
+
+            /* Typography */
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Lato', sans-serif;
+
+            /* Spacing */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --spacing-xl: 8rem;
+
+            /* Transitions */
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        /* RESET & BASE */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--color-alabaster);
+            color: var(--color-charcoal);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-serif);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        p {
+            margin-bottom: var(--spacing-sm);
+            font-weight: 300;
+            font-size: 1.05rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition-smooth);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* UTILITIES */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        .text-champagne { color: var(--color-champagne); }
+        .text-navy { color: var(--color-navy); }
+        .text-center { text-align: center; }
+        
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-lg);
+            align-items: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border: 1px solid var(--color-champagne);
+            color: var(--color-champagne);
+            font-family: var(--font-sans);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            background: transparent;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .btn:hover {
+            background: var(--color-champagne);
+            color: var(--color-navy);
+        }
+
+        .btn-filled {
+            background: var(--color-champagne);
+            color: var(--color-navy);
+        }
+
+        .btn-filled:hover {
+            background: var(--color-alabaster);
+            border-color: var(--color-champagne);
+        }
+
+        /* NAVIGATION */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: var(--spacing-md) 0;
+            transition: var(--transition-smooth);
+        }
+
+        header.scrolled {
+            background: rgba(15, 52, 96, 0.95);
+            backdrop-filter: blur(10px);
+            padding: var(--spacing-sm) 0;
+            border-bottom: 1px solid rgba(239, 192, 123, 0.2);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            color: var(--color-alabaster);
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: var(--spacing-md);
+        }
+
+        .nav-links a {
+            color: var(--color-alabaster);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+            color: var(--color-champagne);
+        }
+
+        /* HERO SECTION */
+        #hero {
+            height: 100vh;
+            background-color: var(--color-navy-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+            z-index: 0;
+            /* Simulating architectural abstract */
+            background: linear-gradient(135deg, #0f3460 0%, #1a1a2e 100%);
+        }
+
+        .hero-content {
+            z-index: 1;
+            text-align: center;
+            color: var(--color-alabaster);
+            max-width: 800px;
+            padding: var(--spacing-md);
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            margin-bottom: var(--spacing-md);
+            opacity: 0; /* Animation init */
+            transform: translateY(20px);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: var(--spacing-lg);
+            color: var(--color-champagne);
+            letter-spacing: 1px;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        /* SECTIONS GENERAL */
+        section {
+            padding: var(--spacing-xl) 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* EXECUTIVE SUMMARY */
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--color-navy);
+            margin-bottom: var(--spacing-md);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background-color: var(--color-champagne);
+        }
+
+        /* CRISIS OF TRUST */
+        .crisis-card {
+            background: var(--color-white);
+            padding: var(--spacing-md);
+            border-left: 2px solid var(--color-navy);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        /* NAMING / TABLES */
+        .table-wrapper {
+            overflow-x: auto;
+            margin-top: var(--spacing-md);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--color-white);
+            min-width: 600px;
+        }
+
+        th, td {
+            padding: var(--spacing-md) var(--spacing-sm);
+            text-align: left;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        th {
+            background-color: var(--color-navy);
+            color: var(--color-alabaster);
+            font-family: var(--font-sans);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #fcfcfc;
+        }
+
+        /* LEXICON GLOSSARY */
+        .lexicon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+        }
+
+        .lexicon-item {
+            background: var(--color-white);
+            padding: var(--spacing-md);
+            border-top: 4px solid transparent;
+            transition: var(--transition-smooth);
+        }
+
+        .lexicon-item:hover {
+            border-top-color: var(--color-champagne);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .lexicon-term {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-slate);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .lexicon-def {
+            font-size: 1.5rem;
+            font-family: var(--font-serif);
+            color: var(--color-navy);
+        }
+
+        /* BEFORE & AFTER SLIDER COMPONENT (CHAPTER 7) */
+        #showcase {
+            background-color: var(--color-navy-dark);
+            color: var(--color-alabaster);
+        }
+        
+        #showcase .section-title {
+            color: var(--color-alabaster);
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            height: 500px; /* Fixed height for demo */
+            margin: var(--spacing-lg) auto;
+            overflow: hidden;
+            cursor: ew-resize;
+            border: 1px solid var(--color-champagne);
+        }
+
+        .slider-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+        }
+
+        /* The "After" image wrapper */
+        .slider-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%; /* JS will change this */
+            height: 100%;
+            overflow: hidden;
+            border-right: 2px solid var(--color-champagne);
+            background-color: var(--color-navy); /* Fallback */
+        }
+
+        .slider-overlay img {
+            /* Important: The image inside the clipped div must be same dimensions as container to align */
+            width: 1000px; /* Must match max-width of container */
+            height: 500px;
+            max-width: none;
+        }
+
+        .slider-label {
+            position: absolute;
+            top: 20px;
+            background: rgba(15, 52, 96, 0.7);
+            color: var(--color-alabaster);
+            padding: 5px 15px;
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            pointer-events: none;
+        }
+
+        .label-before { left: 20px; }
+        .label-after { right: 20px; text-align: right; }
+
+        .slider-handle {
+            position: absolute;
+            top: 50%;
+            left: 50%; /* JS will change this */
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: var(--color-champagne);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            z-index: 10;
+        }
+
+        .slider-handle::after {
+            content: '< >';
+            color: var(--color-navy);
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        /* INFRASTRUCTURE COMPARISON */
+        .infra-card {
+            background: white;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+        }
+
+        .infra-card:hover {
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .infra-img {
+            height: 200px;
+            background-color: #ddd;
+            position: relative;
+        }
+        
+        .infra-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .infra-content {
+            padding: var(--spacing-md);
+        }
+
+        .infra-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            background: var(--color-slate);
+            color: white;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        /* ROADMAP */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: var(--spacing-lg) auto;
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: var(--spacing-md);
+            position: relative;
+        }
+
+        .timeline-week {
+            flex: 0 0 100px;
+            font-family: var(--font-serif);
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--color-navy);
+        }
+
+        .timeline-content {
+            flex: 1;
+            padding-left: var(--spacing-md);
+            border-left: 2px solid rgba(15, 52, 96, 0.1);
+        }
+        
+        .timeline-content h4 {
+            color: var(--color-slate);
+            font-size: 1.1rem;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--color-navy-dark);
+            color: var(--color-alabaster);
+            padding: var(--spacing-xl) 0 var(--spacing-lg);
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            margin-bottom: var(--spacing-sm);
+            display: inline-block;
+        }
+
+        .footer-links {
+            margin-bottom: var(--spacing-lg);
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+        }
+
+        .footer-links a {
+            color: rgba(244, 241, 235, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        .footer-links a:hover {
+            color: var(--color-champagne);
+        }
+
+        .copyright {
+            font-size: 0.8rem;
+            opacity: 0.5;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: var(--spacing-md);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none; /* Simplification for single file */
+            }
+
+            .slider-container {
+                height: 300px;
+            }
+            
+            .slider-overlay img {
+                width: 100vw; /* Fallback for mobile complexity */
+                max-width: 350px;
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header id="main-header">
+        <div class="container">
+            <nav>
+                <div class="logo">ACRE & ANCHOR</div>
+                <div class="nav-links">
+                    <a href="#executive-summary">Summary</a>
+                    <a href="#semantic-architecture">Identity</a>
+                    <a href="#showcase">Visual Proof</a>
+                    <a href="#infrastructure">Infrastructure</a>
+                    <a href="#contact" class="btn">Client Portal</a>
+                </div>
+                <!-- Mobile Menu Icon (Visual Only) -->
+                <div style="display: none;" class="mobile-menu-btn">
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="hero-bg-img"></div>
+            <div class="hero-content">
+                <h1 class="hero-title">Constructing the Apex Agency</h1>
+                <p class="hero-subtitle">A Strategic Blueprint for High-End Real Estate Marketing Identity</p>
+                <a href="#executive-summary" class="btn">Explore The Blueprint</a>
+            </div>
+        </section>
+
+        <!-- Executive Summary -->
+        <section id="executive-summary">
+            <div class="container">
+                <div class="grid-2">
+                    <div>
+                        <h2 class="section-title">Executive Summary</h2>
+                        <p>The digitalization of the real estate sector has created a paradox: while tools for property marketing have become democratized, the demand for exclusivity and trust among high-net-worth (HNW) clients has intensified.</p>
+                        <p>In 2025, the barrier to entry is low, but the barrier to authority is high. Agents dealing in luxury assets—where trust is the currency—cannot afford the "Fiverr reseller" aesthetic.</p>
+                        <p>This report provides the architectural requirements for building the "Apex Agency" model. It dissects naming conventions, operational semantics, and minimalist digital infrastructures to command premium retainers.</p>
+                    </div>
+                    <div>
+                        <img src="https://picsum.photos/seed/luxuryarch/600/400" alt="Modern minimalist architecture" style="width: 100%; border-radius: 4px; filter: grayscale(20%);">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Crisis of Trust -->
+        <section id="crisis-of-trust">
+            <div class="container">
+                <h2 class="section-title">Chapter 1: The Crisis of Trust</h2>
+                <div class="grid-2">
+                    <div>
+                        <img src="https://picsum.photos/seed/interiorempty/600/400" alt="Empty luxury interior" style="width: 100%; margin-bottom: 2rem;">
+                    </div>
+                    <div>
+                        <div class="crisis-card">
+                            <h3>The "Fiverr Effect"</h3>
+                            <p>Commodification of creative services where value is defined by speed and low cost. For a luxury agent selling a $10M property, utilizing a service that feels like a "gig" introduces reputational risk.</p>
+                        </div>
+                        <br>
+                        <div class="crisis-card">
+                            <h3>Quiet Luxury</h3>
+                            <p>The trend rejects conspicuous consumption. It favors understated elegance and timeless design. The agency's website should not scream "Buy Now"; it should whisper "Enter."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Semantic Architecture -->
+        <section id="semantic-architecture">
+            <div class="container">
+                <h2 class="section-title">Chapter 2: Semantic Architecture</h2>
+                <p style="margin-bottom: 2rem;">The name must evoke the solidity of the asset class and the sophistication of the service. We recommend the "Noun & Noun" construct to signal heritage and stability.</p>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Compound Name</th>
+                                <th>Archetype</th>
+                                <th>Psychological Resonance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Acre & Anchor</strong></td>
+                                <td>The Heritage</td>
+                                <td>Roots brand in history (Acre) & stability (Anchor).</td>
+                            </tr>
+                            <tr>
+                                <td>Stone & Sage</td>
+                                <td>The Advisor</td>
+                                <td>Market wisdom and foundational support.</td>
+                            </tr>
+                            <tr>
+                                <td>Vault & Vista</td>
+                                <td>The Curator</td>
+                                <td>Combines security of investment with beauty of view.</td>
+                            </tr>
+                            <tr>
+                                <td>Vertex Realty Labs</td>
+                                <td>The Futurist</td>
+                                <td>Engineered marketing solutions, data & rigor.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lexicon -->
+        <section id="lexicon" style="background-color: var(--color-white);">
+            <div class="container">
+                <h2 class="section-title">Chapter 3: The Lexicon of Authority</h2>
+                <p>Language is the operating system of the brand. We strictly forbid "Marketplace" terminology.</p>
+                
+                <div class="lexicon-grid">
+                    <div class="lexicon-item">
+                        <span class="lexicon-term">Marketplace (Banned)</span>
+                        <span class="lexicon-def" style="text-decoration: line-through; color: #999;">Gig / Job</span>
+                        <div style="border-top: 1px solid #eee; margin: 10px 0;"></div>
+                        <span class="lexicon-term">Agency (Approved)</span>
+                        <span class="lexicon-def">Engagement</span>
+                    </div>
+                    <div class="lexicon-item">
+                        <span class="lexicon-term">Marketplace (Banned)</span>
+                        <span class="lexicon-def" style="text-decoration: line-through; color: #999;">Seller</span>
+                        <div style="border-top: 1px solid #eee; margin: 10px 0;"></div>
+                        <span class="lexicon-term">Agency (Approved)</span>
+                        <span class="lexicon-def">Partner / Consultant</span>
+                    </div>
+                    <div class="lexicon-item">
+                        <span class="lexicon-term">Marketplace (Banned)</span>
+                        <span class="lexicon-def" style="text-decoration: line-through; color: #999;">Buyer</span>
+                        <div style="border-top: 1px solid #eee; margin: 10px 0;"></div>
+                        <span class="lexicon-term">Agency (Approved)</span>
+                        <span class="lexicon-def">Client / Account</span>
+                    </div>
+                    <div class="lexicon-item">
+                        <span class="lexicon-term">Marketplace (Banned)</span>
+                        <span class="lexicon-def" style="text-decoration: line-through; color: #999;">Price / Cost</span>
+                        <div style="border-top: 1px solid #eee; margin: 10px 0;"></div>
+                        <span class="lexicon-term">Agency (Approved)</span>
+                        <span class="lexicon-def">Investment / Retainer</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Showcase / Slider (Chapter 7) -->
+        <section id="showcase">
+            <div class="container text-center">
+                <h2 class="section-title">Chapter 7: Mechanics of Visual Proof</h2>
+                <p style="max-width: 600px; margin: 0 auto 3rem auto; opacity: 0.8;">
+                    The "Before & After" slider is the primary mechanism of visual proof. It allows the user to perform the renovation, creating psychological ownership and validating value.
+                </p>
+
+                <div class="slider-container" id="sliderComponent">
+                    <!-- Before Image (Background) -->
+                    <img src="https://picsum.photos/seed/emptyroom/1000/500" alt="Before Virtual Staging" class="slider-image">
+                    <span class="slider-label label-before">Original</span>
+
+                    <!-- After Image (Overlay) -->
+                    <div class="slider-overlay" id="sliderOverlay">
+                        <img src="https://picsum.photos/seed/luxuryroom/1000/500" alt="After Virtual Staging">
+                    </div>
+                    
+                    <!-- Handle -->
+                    <div class="slider-handle" id="sliderHandle"></div>
+                    
+                    <!-- After Label (Needs to be on top to be seen, but logic dictates it sits on the right) -->
+                    <span class="slider-label label-after">Staged</span>
+                </div>
+
+                <p class="text-champagne"><em>Interactive Demonstration: Drag the slider to view the transformation.</em></p>
+            </div>
+        </section>
+
+        <!-- Infrastructure -->
+        <section id="infrastructure">
+            <div class="container">
+                <h2 class="section-title">Digital Infrastructure</h2>
+                <div class="grid-2">
+                    <div class="infra-card">
+                        <div class="infra-img">
+                            <img src="https://picsum.photos/seed/framer/600/300" alt="Framer UI">
+                        </div>
+                        <div class="infra-content">
+                            <span class="infra-badge">Recommendation</span>
+                            <h3>The Framer Ecosystem</h3>
+                            <p>Bridges the gap between design and development. Ideal for "Scrollytelling" and high-fidelity interaction design.</p>
+                            <ul style="font-size: 0.9rem; color: var(--color-slate); margin-top: 1rem;">
+                                <li>• Scroll Transforms</li>
+                                <li>• Component Architecture</li>
+                                <li>• Custom "Before & After" Physics</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="infra-card">
+                        <div class="infra-img">
+                            <img src="https://picsum.photos/seed/carrd/600/300" alt="Minimalist Layout">
+                        </div>
+                        <div class="infra-content">
+                            <span class="infra-badge">Alternative</span>
+                            <h3>The Carrd Ecosystem</h3>
+                            <p>Efficient, streamlined, and focused. Best for agencies relying on direct referrals needing a "digital business card."</p>
+                            <ul style="font-size: 0.9rem; color: var(--color-slate); margin-top: 1rem;">
+                                <li>• Instant Load Speed</li>
+                                <li>• Constraints-Based Design</li>
+                                <li>• Cost Effective (~$19/yr)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Operational Roadmap -->
+        <section id="operational-roadmap" style="background-color: var(--color-white);">
+            <div class="container">
+                <h2 class="section-title">Chapter 10: Operational Roadmap</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-week">Week 1</div>
+                        <div class="timeline-content">
+                            <h4>Identity Definition</h4>
+                            <p>Finalize Name (Acre & Anchor), Create Logotype (Bodoni Moda), Define Palette (Midnight Opulence).</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-week">Week 2</div>
+                        <div class="timeline-content">
+                            <h4>Infrastructure Build</h4>
+                            <p>Select Framer Template (SwissMinimal), Implement Semantic Glossary, Install Slider Component.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-week">Week 3</div>
+                        <div class="timeline-content">
+                            <h4>Asset Creation</h4>
+                            <p>Rewrite all copy to Editorial Style, Create Password Protected "Client Portal" demo.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-week">Week 4</div>
+                        <div class="timeline-content">
+                            <h4>Launch & Outreach</h4>
+                            <p>Launch site. Email 50 luxury agents: "Partnership Inquiry: Acre & Anchor."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-logo">ACRE & ANCHOR</div>
+            <p style="opacity: 0.7; max-width: 500px; margin: 0 auto 2rem;">
+                Precision Virtual Staging for the Luxury Market. We do not merely fill rooms with furniture; we curate digital environments.
+            </p>
+            <div class="footer-links">
+                <a href="#">About</a>
+                <a href="#">Case Studies</a>
+                <a href="#">Client Portal</a>
+                <a href="#">Inquire</a>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Acre & Anchor Agency. All Rights Reserved. Concept Design.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Header Scroll Effect (Glassmorphism trigger)
+            const header = document.getElementById('main-header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // 2. Scroll Reveal Animation (Intersection Observer)
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Only animate once
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('section').forEach(section => {
+                observer.observe(section);
+            });
+
+            // Hero Text Stagger Animation
+            const heroTitle = document.querySelector('.hero-title');
+            const heroSub = document.querySelector('.hero-subtitle');
+            
+            setTimeout(() => {
+                heroTitle.style.opacity = '1';
+                heroTitle.style.transform = 'translateY(0)';
+                heroTitle.style.transition = 'all 0.8s ease-out';
+            }, 300);
+
+            setTimeout(() => {
+                heroSub.style.opacity = '1';
+                heroSub.style.transform = 'translateY(0)';
+                heroSub.style.transition = 'all 0.8s ease-out';
+            }, 600);
+
+            // 3. Before/After Slider Logic (Chapter 7)
+            const slider = document.getElementById('sliderComponent');
+            const overlay = document.getElementById('sliderOverlay');
+            const handle = document.getElementById('sliderHandle');
+            let isDragging = false;
+
+            const updateSlider = (x) => {
+                const rect = slider.getBoundingClientRect();
+                let position = x - rect.left;
+                
+                // Constrain
+                if (position < 0) position = 0;
+                if (position > rect.width) position = rect.width;
+
+                const percentage = (position / rect.width) * 100;
+
+                // Update visuals
+                overlay.style.width = `${percentage}%`;
+                handle.style.left = `${percentage}%`;
+            };
+
+            // Mouse Events
+            slider.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                updateSlider(e.clientX);
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                updateSlider(e.clientX);
+            });
+
+            window.addEventListener('mouseup', () => {
+                isDragging = false;
+            });
+
+            // Touch Events (Mobile)
+            slider.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                updateSlider(e.touches[0].clientX);
+            });
+
+            window.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                updateSlider(e.touches[0].clientX);
+            });
+
+            window.addEventListener('touchend', () => {
+                isDragging = false;
+            });
+        });
+    </script>
+</body>
+</html>
