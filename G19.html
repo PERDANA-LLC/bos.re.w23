@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gig Economy Supply Chain Strategy</title>
+    <meta name="description" content="A strategic framework for Vendor Risk Management and Global Labor Arbitrage in the Gig Economy.">
+    
+    <style>
+        /* --- CSS Variables & Reset --- */
+        :root {
+            --color-primary: #0f172a; /* Deep Navy */
+            --color-secondary: #3b82f6; /* Bright Blue */
+            --color-accent: #f59e0b; /* Amber/Arbitrage */
+            --color-text: #334155;
+            --color-text-light: #64748b;
+            --color-bg: #f8fafc;
+            --color-surface: #ffffff;
+            --color-border: #e2e8f0;
+            --font-main: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+            --radius-md: 0.5rem;
+            --radius-lg: 1rem;
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--color-text);
+            background-color: var(--color-bg);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- Typography --- */
+        h1, h2, h3, h4 {
+            color: var(--color-primary);
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        h1 { font-size: 2.5rem; letter-spacing: -0.02em; }
+        h2 { font-size: 2rem; margin-bottom: 1rem; }
+        h3 { font-size: 1.5rem; margin-bottom: 0.75rem; }
+        h4 { font-size: 1.125rem; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-secondary); }
+
+        p { margin-bottom: 1.5rem; }
+        
+        strong { color: var(--color-primary); font-weight: 600; }
+        
+        sup {
+            font-size: 0.75rem;
+            color: var(--color-text-light);
+            vertical-align: super;
+            line-height: 0;
+            margin-left: 2px;
+        }
+
+        /* --- Layout Utilities --- */
+        .container {
+            width: 100%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem auto;
+        }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+        .grid-3 { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+        .grid-4 { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+
+        @media (min-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr 1fr; }
+            .grid-3 { grid-template-columns: repeat(3, 1fr); }
+            .grid-4 { grid-template-columns: repeat(4, 1fr); }
+            h1 { font-size: 3.5rem; }
+        }
+
+        /* --- Navigation --- */
+        header {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: none;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: white; }
+
+        .mobile-menu-btn {
+            display: block;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        @media (min-width: 768px) {
+            .nav-links { display: flex; }
+            .mobile-menu-btn { display: none; }
+        }
+
+        /* --- Hero Section --- */
+        #hero {
+            background: linear-gradient(135deg, var(--color-primary) 0%, #1e293b 100%);
+            color: white;
+            padding: 8rem 0 6rem;
+            text-align: center;
+        }
+
+        #hero h1 { color: white; margin-bottom: 1.5rem; }
+        #hero p { color: #cbd5e1; font-size: 1.25rem; max-width: 700px; margin: 0 auto 2rem; }
+        
+        .cta-button {
+            display: inline-block;
+            background: var(--color-secondary);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s, background 0.2s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            background: #2563eb;
+        }
+
+        /* --- Cards & Components --- */
+        .card {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--color-border);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background: #eff6ff;
+            color: var(--color-secondary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-icon svg { width: 24px; height: 24px; }
+
+        /* --- Rule of 3 Section --- */
+        .stat-box {
+            background: var(--color-primary);
+            color: white;
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+        }
+
+        .stat-box h3 { color: var(--color-accent); }
+        
+        .rubric-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .rubric-table th, .rubric-table td {
+            text-align: left;
+            padding: 1rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+        
+        .rubric-table th { background: #f1f5f9; color: var(--color-primary); }
+        
+        /* --- Script Block --- */
+        .script-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            position: relative;
+            border-left: 4px solid var(--color-accent);
+        }
+
+        /* --- Time Zone Map --- */
+        .region-card {
+            border-left: 4px solid transparent;
+        }
+        
+        .region-ph { border-left-color: var(--color-secondary); }
+        .region-ee { border-left-color: var(--color-accent); }
+        .region-latam { border-left-color: #10b981; }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 99px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .badge-pros { background: #dcfce7; color: #166534; }
+        .badge-cons { background: #fee2e2; color: #991b1b; }
+
+        /* --- OpSec (Warning Style) --- */
+        #opsec {
+            background-color: #fff1f2; /* Light red tint */
+        }
+        #opsec .card {
+            border-color: #fecdd3;
+            background: white;
+        }
+        
+        /* --- SOPs --- */
+        details {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+        
+        details[open] { box-shadow: var(--shadow-md); }
+        
+        summary {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            list-style: none;
+        }
+        
+        summary::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--color-text-light);
+        }
+        
+        details[open] summary::after { content: '-'; }
+        
+        .details-content {
+            padding: 1.5rem;
+            border-top: 1px solid var(--color-border);
+            background: #f8fafc;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: var(--color-primary);
+            color: #94a3b8;
+            padding: 4rem 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* --- Icons --- */
+        .icon-svg { width: 100%; height: 100%; fill: currentColor; }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                    Gig SCM Framework
+                </a>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">☰</button>
+                <ul class="nav-links">
+                    <li><a href="#intro">Introduction</a></li>
+                    <li><a href="#enterprise">Enterprise Standard</a></li>
+                    <li><a href="#rule-of-three">Rule of 3</a></li>
+                    <li><a href="#white-label">White Label</a></li>
+                    <li><a href="#time-zone">Time Zone Hack</a></li>
+                    <li><a href="#opsec">Security</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="container">
+            <h1>Supply Chain Management in the Gig Economy</h1>
+            <p>A Strategic Framework for Vendor Risk Management and Global Labor Arbitrage. Transforming freelance procurement from a transactional gamble into an enterprise-grade operation.</p>
+            <a href="#intro" class="cta-button">Read the Framework</a>
+        </div>
+    </section>
+
+    <main>
+        <!-- Introduction -->
+        <section id="intro">
+            <div class="container">
+                <div class="grid-2">
+                    <div>
+                        <h4>The Paradigm Shift</h4>
+                        <h2>The Era of Micro-Supply Chains</h2>
+                        <p>The global business landscape has shifted from monolithic organizations to decentralized ecosystems. The "Supply Chain" is no longer just shipping containers; it is the digital transmission of services, IP, and talent.</p>
+                        <p>For the modern digital agency, the freelancer is the new factory. But easy access to the gig economy has introduced complacency. Many organizations ignore the profound risks of unvetted third-party labor.</p>
+                        <p>We argue that freelance talent management requires the same rigorous <strong>Vendor Risk Management (VRM)</strong> discipline used by Fortune 500 enterprises. An agency’s reputation is bound to the reliability of its weakest node.</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>The Three Pillars</h3>
+                        <ul style="list-style: none; margin-top: 1.5rem;">
+                            <li style="margin-bottom: 1rem;"><strong>1. Statistical QA</strong><br>The "Rule of 3" for vetting.</li>
+                            <li style="margin-bottom: 1rem;"><strong>2. Legal Insulation</strong><br>The White-Label Agreement.</li>
+                            <li><strong>3. Logistical Arbitrage</strong><br>The "Time Zone Hack".</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enterprise Standard -->
+        <section id="enterprise" style="background: white;">
+            <div class="container">
+                <div class="section-header">
+                    <h4>Enterprise Standard</h4>
+                    <h2>Adapting Accenture’s Framework</h2>
+                    <p>To legitimize freelance labor, we apply corporate governance principles to the micro-supply chain.</p>
+                </div>
+                <div class="grid-4">
+                    <!-- Stewardship -->
+                    <article class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        </div>
+                        <h3>Stewardship</h3>
+                        <p><strong>Protection of IP.</strong> Beyond standard ToS, agencies must enforce protocols where client data is stored only on secure agency portals, never on personal local storage.</p>
+                    </article>
+
+                    <!-- Best People -->
+                    <article class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        </div>
+                        <h3>Best People</h3>
+                        <p><strong>Meritocracy.</strong> Focus on quantifiable metrics, not price. Map freelancer skills to tiers. Establish "Revolving Door" restrictions to prevent client poaching.</p>
+                    </article>
+
+                    <!-- Client Value -->
+                    <article class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+                        </div>
+                        <h3>Client Value</h3>
+                        <p><strong>Quality Imperative.</strong> The agency's margin is justified by QA and Project Management. You must ensure the deliverable exceeds expectations, not just matches them.</p>
+                    </article>
+
+                    <!-- Integrity -->
+                    <article class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+                        </div>
+                        <h3>Integrity</h3>
+                        <p><strong>One Global Network.</strong> The freelancer and PM must operate as a synchronized entity. Ensure ethical sourcing (no piracy) and internal transparency.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rule of 3 -->
+        <section id="rule-of-three">
+            <div class="container">
+                <div class="grid-2">
+                    <div>
+                        <h4>Quality Assurance</h4>
+                        <h2>The "Rule of 3" Protocol</h2>
+                        <p>Variance is the core vulnerability. A freelancer might be excellent on Monday and ghost on Tuesday. The "Rule of 3" is a supply chain redundancy strategy.</p>
+                        <p style="font-size: 1.1rem; border-left: 4px solid var(--color-secondary); padding-left: 1rem; font-style: italic;">
+                            "Identify three different freelancers for the same service. Test them all with a paid 'test' project."
+                        </p>
+                        <p>This removes the <strong>Baseline Fallacy</strong>. Testing three providers allows you to establish a Performance Baseline.</p>
+                        <ul>
+                            <li><strong>Single Source:</strong> Subjective ("Is this good?")</li>
+                            <li><strong>Dual Source:</strong> Comparative ("Is A better than B?")</li>
+                            <li><strong>Triple Source:</strong> Objective Benchmarking ("What is the market standard?")</li>
+                        </ul>
+                    </div>
+                    <div class="card" style="overflow-x: auto;">
+                        <h3>The Evaluation Rubric</h3>
+                        <p style="font-size: 0.9rem; color: var(--color-text-light);">Weighted scoring matrix to remove emotion from selection.</p>
+                        <table class="rubric-table">
+                            <thead>
+                                <tr>
+                                    <th>Criteria</th>
+                                    <th>Weight</th>
+                                    <th>Success Indicator</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Technical Adherence</td>
+                                    <td>40%</td>
+                                    <td>Zero revisions for specs.</td>
+                                </tr>
+                                <tr>
+                                    <td>Aesthetic/Code Quality</td>
+                                    <td>30%</td>
+                                    <td>Clean, professional output.</td>
+                                </tr>
+                                <tr>
+                                    <td>Communication Speed</td>
+                                    <td>15%</td>
+                                    <td>Response &lt;2 hours of day start.</td>
+                                </tr>
+                                <tr>
+                                    <td>English Proficiency</td>
+                                    <td>10%</td>
+                                    <td>Understands nuance clearly.</td>
+                                </tr>
+                                <tr>
+                                    <td>File Hygiene</td>
+                                    <td>5%</td>
+                                    <td>Professional naming/org.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- White Label -->
+        <section id="white-label" style="background: white;">
+            <div class="container">
+                <div class="grid-2">
+                    <div>
+                        <h4>Legal Frameworks</h4>
+                        <h2>The White-Label Agreement</h2>
+                        <p>The "White Label" agreement is the legal instrument that converts a freelancer's output into the agency's asset. Without this, the agency is merely a reseller with no proprietary claim.</p>
+                        <p><strong>The Commercial Use Loophole:</strong> Many platforms have a "Commercial Use" extra. If not purchased, the transfer of rights may be incomplete. Always verify rights transfer.</p>
+                        <p><strong>The Portfolio Paradox:</strong> Freelancers need work to get work; agencies need secrecy. Resolve this by treating "Non-Disclosure" as a purchasable commodity (offer a 10-20% premium for a "Ghostwriter" service).</p>
+                    </div>
+                    <div>
+                        <h3>The Negotiation Script</h3>
+                        <div class="script-block">
+                            "Hi [Freelancer Name],<br><br>
+                            We are a digital agency vetting partners for long-term collaboration. We anticipate a volume of 5-10 projects per month.<br><br>
+                            Because we resell to corporate clients, we require a strict White Label Arrangement:<br>
+                            • <strong>Full IP Transfer:</strong> We retain 100% copyright.<br>
+                            • <strong>Invisible Delivery:</strong> No watermarks/metadata.<br>
+                            • <strong>Portfolio Embargo:</strong> You agree NOT to display this work publicly.<br><br>
+                            In exchange, we offer consistent bulk orders and immediate 5-star reviews. Please confirm if you are comfortable."
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Time Zone Hack -->
+        <section id="time-zone">
+            <div class="container">
+                <div class="section-header">
+                    <h4>Logistical Arbitrage</h4>
+                    <h2>The "Time Zone Hack"</h2>
+                    <p>Operational efficiency is driven by Temporal Arbitrage. Pick freelancers that allow you to "work while the agent sleeps" to achieve a 24-hour production cycle.</p>
+                </div>
+
+                <div class="grid-3">
+                    <!-- Philippines -->
+                    <article class="card region-card region-ph">
+                        <h3>Philippines & SEA</h3>
+                        <div class="badge" style="background: #eff6ff; color: #1d4ed8;">Offset: +12 to +13 Hours (EST)</div>
+                        <p><strong>The "Perfect Overnight":</strong> You close at 5 PM EST; they start at 6 AM Manila. Work is done when you wake up.</p>
+                        <p><span class="badge badge-pros">Pros</span> High English, very low cost, high retention.</p>
+                        <p><span class="badge badge-cons">Cons</span> Zero synchronous overlap (no live chat).</p>
+                        <hr style="border: 0; border-top: 1px solid #eee; margin: 1rem 0;">
+                        <p><strong>Best For:</strong> Repetitive tasks, data entry, rigid procedural work.</p>
+                    </article>
+
+                    <!-- Eastern Europe -->
+                    <article class="card region-card region-ee">
+                        <h3>Eastern Europe</h3>
+                        <div class="badge" style="background: #fffbeb; color: #b45309;">Offset: +7 Hours (EST)</div>
+                        <p><strong>The "Golden Window":</strong> 3-5 hour overlap in the morning (8 AM - 1 PM EST). Allows live Zoom calls and debugging.</p>
+                        <p><span class="badge badge-pros">Pros</span> Strong STEM talent, GDPR compliant, creative pushback.</p>
+                        <p><span class="badge badge-cons">Cons</span> Higher cost ($25-$45/hr).</p>
+                        <hr style="border: 0; border-top: 1px solid #eee; margin: 1rem 0;">
+                        <p><strong>Best For:</strong> Software development, complex design, architecture.</p>
+                    </article>
+
+                    <!-- LATAM -->
+                    <article class="card region-card region-latam">
+                        <h3>Latin America</h3>
+                        <div class="badge" style="background: #ecfdf5; color: #047857;">Offset: +/- 0 to 2 Hours (EST)</div>
+                        <p><strong>Real-Time Alignment:</strong> They work exactly when you work.</p>
+                        <p><span class="badge badge-pros">Pros</span> Total synchronicity, cultural affinity.</p>
+                        <p><span class="badge badge-cons">Cons</span> No overnight benefit. Does not compress timeline.</p>
+                        <hr style="border: 0; border-top: 1px solid #eee; margin: 1rem 0;">
+                        <p><strong>Best For:</strong> Project management, sales, real-time support.</p>
+                    </article>
+                </div>
+
+                <div style="margin-top: 3rem; background: #f1f5f9; padding: 1.5rem; border-radius: var(--radius-md);">
+                    <h4>Asynchronous Handoff Protocol</h4>
+                    <p>To prevent the "Ping-Pong Delay" (where a question waits 24 hours for an answer), use <strong>Video Briefs</strong> (Loom/Vidyard). A 2-minute visual context removes 90% of ambiguity. Include "If/Then" instructions to empower freelancers to solve blockers without you.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- OpSec -->
+        <section id="opsec">
+            <div class="container">
+                <div class="section-header">
+                    <h4>Operational Security</h4>
+                    <h2>Counter-Poaching & Data Sanitation</h2>
+                    <p>If a client discovers they can hire the freelancer directly for 20% less, the agency dies. OpSec is the defense.</p>
+                </div>
+                
+                <div class="grid-3">
+                    <div class="card">
+                        <h3>The Blind Brief</h3>
+                        <p>Ensure the freelancer never knows who the client is. Redact names/addresses from PDFs. Replace brand names with pseudonyms (e.g., "Beverage Brand Q3").</p>
+                    </div>
+                    <div class="card">
+                        <h3>Metadata Scrubbing</h3>
+                        <p>Use EXIF scrubbers. A freelancer checking file properties should see "Agency Name," not "Client Name." Rename files generically before sending.</p>
+                    </div>
+                    <div class="card">
+                        <h3>The Buffer Wall</h3>
+                        <p>Never share client emails. Use "Buffer Emails" (e.g., dev.team@agency.com). Use white-label portals (SuiteDash) to strip direct contact ability.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Infrastructure -->
+        <section id="infrastructure" style="background: white;">
+            <div class="container">
+                <div class="grid-2">
+                    <div>
+                        <h2>Infrastructure & Tech Stack</h2>
+                        <p>Excel is insufficient. You need a database of vetted freelancers ("The Bench").</p>
+                        <ul style="line-height: 2;">
+                            <li><strong>Airtable/Notion:</strong> For tracking skills, scores, and availability.</li>
+                            <li><strong>SuiteDash/Moxo:</strong> All-in-one client portals that hide the backend.</li>
+                            <li><strong>LastPass/1Password:</strong> Securely share client credentials without revealing the password.</li>
+                        </ul>
+                    </div>
+                    <div class="card" style="background: var(--color-primary); color: white;">
+                        <h3 style="color: white;">Economic Reality</h3>
+                        <p>Target a <strong>50-70% Gross Margin</strong>.</p>
+                        <p>The "Management Tax" (the remaining margin) covers the value add: The Briefing, QA, Vetting, and Insurance.</p>
+                        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.2); margin: 1rem 0;">
+                        <p><strong>Cash Flow:</strong> Clients pay Net-30, Freelancers want paid immediately. Secure <strong>Upfront Deposits (50-100%)</strong> from clients to fund the supply chain using their capital.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusion & SOPs -->
+        <section id="conclusion">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Conclusion: The Agency as a Risk Arbitrageur</h2>
+                    <p>The modern digital agency is less a creator and more an aggregator and insurer of global talent. Through rigorous governance, the freelancer becomes a replaceable, managed component in a resilient machine.</p>
+                </div>
+
+                <div class="grid-2">
+                    <div>
+                        <h3>Appendix: SOPs</h3>
+                        <p>Standard Operating Procedures for execution.</p>
+                        
+                        <details>
+                            <summary>SOP 1: The "Rule of 3" Protocol</summary>
+                            <div class="details-content">
+                                <ol style="margin-left: 1.5rem; margin-bottom: 0;">
+                                    <li><strong>Source:</strong> Find 3 candidates (4.8+ rating, &lt;24hr response).</li>
+                                    <li><strong>Brief:</strong> Send identical paid test ($20-$50) with intentional ambiguity.</li>
+                                    <li><strong>Evaluate:</strong> Score on Matrix.</li>
+                                    <li><strong>Select:</strong> #1 gets job; #2 goes to "The Bench".</li>
+                                </ol>
+                            </div>
+                        </details>
+
+                        <details>
+                            <summary>SOP 2: The White Label Negotiation</summary>
+                            <div class="details-content">
+                                <ol style="margin-left: 1.5rem; margin-bottom: 0;">
+                                    <li><strong>Outreach:</strong> Send "Volume + White Label" script.</li>
+                                    <li><strong>Confirm:</strong> Verify "No Portfolio / No Watermark" in writing.</li>
+                                    <li><strong>Purchase:</strong> Buy "Commercial Use" rights.</li>
+                                    <li><strong>Sanitize:</strong> Scrub metadata before client delivery.</li>
+                                </ol>
+                            </div>
+                        </details>
+
+                        <details>
+                            <summary>SOP 3: The "Blind Brief" Handoff</summary>
+                            <div class="details-content">
+                                <ol style="margin-left: 1.5rem; margin-bottom: 0;">
+                                    <li><strong>Redact:</strong> Remove client name/logo.</li>
+                                    <li><strong>Record:</strong> 2-min Loom video explaining tone.</li>
+                                    <li><strong>Dispatch:</strong> Send via Portal at 5 PM EST.</li>
+                                    <li><strong>Review:</strong> Check output at 8 AM EST.</li>
+                                </ol>
+                            </div>
+                        </details>
+                    </div>
+                    
+                    <div>
+                        <!-- Visual Representation of the Cycle -->
+                        <div style="background: white; border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 2rem; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+                            <div style="font-size: 4rem; margin-bottom: 1rem;">♻️</div>
+                            <h3>The 24-Hour Cycle</h3>
+                            <p>Agency Sleeps → Freelancer Works → Agency QA → Client Delivery</p>
+                            <div style="display: flex; gap: 0.5rem; margin-top: 1.5rem;">
+                                <span style="padding: 0.5rem 1rem; background: #f1f5f9; border-radius: 4px; font-size: 0.8rem;">Vet</span>
+                                <span style="padding: 0.5rem 1rem; background: #f1f5f9; border-radius: 4px; font-size: 0.8rem;">Secure</span>
+                                <span style="padding: 0.5rem 1rem; background: #f1f5f9; border-radius: 4px; font-size: 0.8rem;">Deploy</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p><strong>Supply Chain Management in the Gig Economy</strong></p>
+            <p style="font-size: 0.8rem; opacity: 0.7;">A Strategic Framework for Vendor Risk Management and Global Labor Arbitrage.<br>
+            All rights reserved. This is a static showcase based on the provided strategic report.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple Mobile Menu Toggle
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuBtn.addEventListener('click', () => {
+            const isFlex = navLinks.style.display === 'flex';
+            navLinks.style.display = isFlex ? 'none' : 'flex';
+            navLinks.style.flexDirection = 'column';
+            navLinks.style.position = 'absolute';
+            navLinks.style.top = '70px';
+            navLinks.style.left = '0';
+            navLinks.style.width = '100%';
+            navLinks.style.background = '#0f172a';
+            navLinks.style.padding = '1rem';
+            navLinks.style.borderBottom = '1px solid rgba(255,255,255,0.1)';
+        });
+    </script>
+</body>
+</html>
